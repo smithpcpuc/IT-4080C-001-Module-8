@@ -7,8 +7,14 @@ using UnityEngine.UI;
 
 public class LobbyPlayerPanel : MonoBehaviour
 {
-    [SerializeField] public TMPro.TMP_Text txtName;
-    [SerializeField] public GameObject pnlColor;
+    [SerializeField] protected TMPro.TMP_Text txtName;
+    [SerializeField] protected TMPro.TMP_Text txtReady;
+    [SerializeField] protected GameObject pnlColor;
+    private bool isReady = false;
+
+    public void Start() {
+        SetReady(isReady);
+    }
 
     public void SetName(string newName) {
         txtName.text = newName;
@@ -20,5 +26,14 @@ public class LobbyPlayerPanel : MonoBehaviour
 
     public void SetColor(Color c) {
         pnlColor.GetComponent<Image>().color = c;
+    }
+
+    public void SetReady(bool ready) {
+        isReady = ready;
+        if (ready) {
+            txtReady.text = "Ready";
+        } else {
+            txtReady.text = "Not Ready";
+        }
     }
 }
